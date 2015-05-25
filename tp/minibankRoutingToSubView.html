@@ -1,0 +1,21 @@
+        <html ng-app="minibankApp">
+        <head>
+
+        <script src="lib/angular/angular.js"></script>
+        <script src="lib/angular/angular-route.js"></script>
+        <script src="lib/angular/angular-resource.js"></script>
+        <script src="js/myServices.js"></script>
+        <script src="js/minibankApp_with_route.js"></script>
+        <script src="js/minibankCtrls_with_route.js"></script>
+        </head>
+        <body>
+		    <h1>Minibank App</h1>
+			<hr/>
+			<div ng-view ></div>
+			<hr/>
+			<div>
+			... status , mentions legales , ... <a href="#/welcome"> retour accueil </a>
+			</div>
+     
+        </body>
+        </html>
