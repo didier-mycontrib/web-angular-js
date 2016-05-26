@@ -1,0 +1,32 @@
+
+
+
+.my-anim.ng-enter, 
+.my-anim.ng-leave
+{ 
+	-webkit-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-moz-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-ms-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-o-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	position: relative;
+	display: block;
+	overflow: hidden;
+	text-overflow: clip;
+	white-space:nowrap;
+} 
+
+.my-anim.ng-leave.my-anim.ng-leave-active,
+.my-anim.ng-enter {
+	opacity: 0;
+	width: 0px;
+	height: 0px;
+}
+
+.my-anim.ng-enter.ng-enter-active, 
+.my-anim.ng-leave {
+	opacity: 1;
+	width: 150px;
+	height: 30px;
+}
+

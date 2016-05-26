@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <title>Top Animation</title>
+  <script>document.write('<base href="' + document.location + '" />');</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-animate.js"></script>
+</head>
+
+<script>
+var app = angular.module('app', ['ngAnimate']);
+
+app.controller('Ctrl', function($scope) {
+  $scope.names = ['Alain Therieur', 'Alex Therieur', 'Olie Condor', 'Naomi Black',  'John Scott'];
+});
+</script>
+
+<body ng-controller="Ctrl">
+  <div  style="margin-top: 30px; width: 200px; overflow: hidden;">
+    <form > 
+        <div >
+          <input type="text" ng-model="search" style="width: 80px">
+          <button type="submit" >Search</button>
+        </div>
+        <ul >
+          <li class="my-anim" ng-repeat="name in names | filter:search">
+            <a href="#"> {{name}} </a>
+          </li> 
+      </ul>
+    </form>
+  </div>
+</body>
+</html>
