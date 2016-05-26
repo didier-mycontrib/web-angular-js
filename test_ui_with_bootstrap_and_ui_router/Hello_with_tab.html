@@ -1,0 +1,76 @@
+        <html ng-app="myAjsApp" >
+        <head>
+		 <link rel="stylesheet" href="css/bootstrap.css">
+		 <!-- link rel="stylesheet" href="css/bootstrap-theme.css" -->
+        <script src="lib/angular/angular.js"></script>
+		<script src="lib/angular/angular-locale_fr.js"></script>
+		<script src="lib/ui/ui-bootstrap-tpls-0.13.0.js"></script>
+		<script src="js/mainCtrls_tab.js"></script>
+
+	<script>
+	   
+	</script>
+        </head>
+        <body ng-controller="MyCtrl">
+		
+		<h3>{{title}}</h3>
+	
+	
+	<tabset>
+    <tab heading="hello">
+	    <p>Enter your Name: <input type="text" ng-model="name"></p> 
+		<p>Hello <span ng-bind="name"></span></p>
+		
+	</tab>
+	
+		
+    <tab heading="calcul">
+	    <p>Enter a number: <input type="text" ng-model="num"></p>
+		<p><span ng-bind="num"></span> * 10 = <span ng-bind="num * 10"></span></p>
+	</tab>
+	
+	 <tab heading="datePicker">
+	    <p>Enter a date: <input type="text"  datepicker-popup="dd/MM/yyyy" 
+				 ng-model="date1" 
+				 required='true'
+				 datepicker-options="{ startingDay: 1 }"
+				 is-open="isDatePickerPopupOpened" 
+				 ng-click = "isDatePickerPopupOpened = true" />
+				
+		<p>choosed date: {{date1}}</p>
+	</tab>
+	
+	<tab heading="modalDialogBox">
+	
+	<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Modal DialogBox Title</h3>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="item in items">
+                    <a ng-click="selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+	
+	   <button class="btn btn-default" ng-click="openDlg()">Open dialogBox</button>
+	   <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+	</tab>
+ 
+        
+	<tab heading="test alert">
+      <alert ng-repeat="alert in alerts" 
+	         type="{{alert.type}}" 
+			 close="closeAlert($index)">{{alert.msg}}</alert>
+       <button class='btn btn-default' ng-click="addAlert()">Add Alert</button>	
+		</tab>
+	</tabset>
+        </body>
+        </html>

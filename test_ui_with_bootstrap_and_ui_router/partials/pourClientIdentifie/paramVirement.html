@@ -1,0 +1,8 @@
+      <div id="divVirement" style="background-color:rgb(160,160,250); margin:3px; padding:3px;" >
+        <h3> parametrage virement </h3> 
+		   <label for="montant">montant :</label> <input id="montant" ng-model="transfert.montant"  /> <br/>
+           <label for="numCptDeb">numCptDeb :</label> <input id="numCptDeb" ng-model="transfert.numCptDeb"  /> <br/>
+           <label for="numCptCred">numCptCred :</label> <input id="numCptCred" ng-model="transfert.numCptCred"  /> <br/>
+		  <button ng-click="doVirementAndRefresh()">effectuer le virement</button>
+        </div>
+        

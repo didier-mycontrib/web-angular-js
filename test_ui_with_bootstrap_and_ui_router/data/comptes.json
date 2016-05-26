@@ -1,0 +1,17 @@
+[
+{
+"numero" : 1,
+"label" : "compte 1 (courant)",
+"solde" : 600.0
+},
+{
+"numero" : 2,
+"label" : "compte 2 (LDD)",
+"solde" : 3200.0
+},
+{
+"numero" : 3,
+"label" : "compte 3 (PEL)",
+"solde" : 6500.0
+}
+]

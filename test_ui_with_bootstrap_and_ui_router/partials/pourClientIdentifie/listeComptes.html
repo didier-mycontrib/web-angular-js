@@ -1,0 +1,10 @@
+      <div id="divListeComptes" style="background-color:rgb(160,250,160); margin:3px; padding:3px;">
+        <h3> liste des comptes </h3> 
+		<table border="1">
+		    <tr>  <th> numero </th>  <th> label </th>  <th> solde </th> </tr>
+			<tr ng-repeat="cpt in comptes">  <td style='color : blue' ng-click="displayLastOperations(cpt.numero)"> {{cpt.numero}} </td>  <td> {{cpt.label}} </td>  <td> {{cpt.solde}} </td> </tr>
+		</table>
+		<i>Un click sur un numero de compte permet d'obtenir la liste des dernieres operations</i>
+       
+        </div>
+        
