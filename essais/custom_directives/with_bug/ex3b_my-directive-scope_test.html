@@ -1,0 +1,49 @@
+        <html ng-app="myApp">
+        <head>
+        <script src="lib/angular/angular.js"></script>
+		<script>
+	   var myAjsApp = angular.module('myApp', []);
+	   myAjsApp.controller('scopeExampleController', ['$scope', function($scope) {
+			$scope.suffix = " */*";
+			$scope.person1 = { name="nom1" , address = "adr1"};
+			$scope.person2 = { name="nom2" , address = "adr2"};
+			
+			$scope.alert3 = function() {
+			     alert("message in the bottle ..." );
+				/*console.log('message in the bottle ...: ' + msg);*/
+			};
+		}]);
+		myAjsApp.directive('myCustomer', function() {
+			return {
+				restrict: 'E',/* A: as Attribute , C:as css Class , E:as Element */
+				scope: {
+					customerInfo: '=info'
+				},
+				template: ' <p>Name: {{customerInfo.name}} Address: {{customerInfo.address}}</p>'
+			};
+		});
+		myAjsApp.directive('myDirectiveWithFct', function() {
+		return {
+		    restrict: 'A' , /* A: as Attribute , C:as css Class , E:as Element */
+			require: '^ngModel', /* camel "ngModel" for snake "ng-model" in html template */
+			scope: {
+				ngModel: '=' , /* for same value of ng-model as in parent scope , bi-directional */
+				onMsgFct: '&',  // Pass a reference to the method (registered in controller) with on-msg-fct="..."
+				myPrefix: '@',   // Store the string associated by my-prefix="..."
+				myLabel: '@'   // Store the string associated by my-label="..."
+			},
+			template: '<input type="button" onclick="alert3();"  value="{{myLabel}} "  />'
+			};
+		});
+		</script>
+        </head>
+        <body  ng-controller="scopeExampleController">
+	    <my-customer info="person1"></my-customer>
+		<my-customer info="person2"></my-customer>
+		<hr>
+	    <input type='text' ng-model="name" placeholder="Enter a value for name" /> <br/>
+		<div my-directive-with-fct ng-model="name" on-msg-fct="alert()" my-prefix="** hello "
+             my-label="touch me"		></div> 
+		
+		</body>
+        </html>

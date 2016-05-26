@@ -1,0 +1,9 @@
+        <div >
+        <h3> {{identification.title}} </h3> 
+		   numClient:<input type="text" ng-model="identification.numClient"/> <i>(ex: 1)</i> <br/>
+		   password:<input type="text" ng-model="identification.password"/> <i>(ex: pwd1)</i><br/>
+           <a href="#/clientIdentifie/{{identification.numClient}}" 
+		     ng-show="identification.verifPassword()" > vers espace client identifie </a> <br/>
+		    <button ng-click="identification.doMyAction()" >doMyAction</button>
+		 </div>  
+        

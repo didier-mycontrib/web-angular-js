@@ -1,0 +1,33 @@
+        <div >
+        <h3>  client identifie : {{identifie.clientId}}</h3> 
+        {{identifie.client.prenom}} {{identifie.client.nom}} <br/>
+		adresse: {{identifie.client.adresse.rue}} {{identifie.client.adresse.codePostal}} {{identifie.client.adresse.ville}} <br/>
+		telephone: {{identifie.client.telephone}} <br/>
+		email: {{identifie.client.email}}
+		<hr/>
+		
+		
+		action: <select ng-model="identifie.renderPath" ng-click="message=''">
+		    <option value="listeComptes"> liste des comptes </option>
+		    <option value="paramVirement">effectuer un virement</option>
+			<!-- <option value="dernieresOperations">dernieres Operations</option> indirectement apres selection dans tableau -->
+		</select>
+		{{message}}
+	   		
+		<div ng-switch on="identifie.renderPath">
+		    <div ng-switch-when="paramVirement">
+				<ng-include src=" 'components/identifie/pourClientIdentifie/paramVirement.html' " />
+			</div>
+			
+		    <div ng-switch-when="listeComptes">
+			   <ng-include src=" 'components/identifie/pourClientIdentifie/listeComptes.html' " />
+			</div>
+			
+			<div ng-switch-when="dernieresOperations" >
+			    <ng-include src=" 'components/identifie/pourClientIdentifie/dernieresOperations.html' " />
+			</div>
+			<div ng-switch-default > *** </div>
+		</div>
+		
+        </div>
+        

@@ -1,0 +1,57 @@
+<html ng-app="myApp">
+<head>
+<script src="lib/angular/angular.js"></script>
+<script>
+		
+var myAjsApp = angular.module('myApp', []);
+	   
+myAjsApp.controller('Controller', ['$scope', function($scope) {
+		$scope.format = 'M/d/yy h:mm:ss a';
+	}])
+/* like $timeout , injected $interval service can fire regular code ,
+     predefined 'dateFilter' is injected as well */
+myAjsApp.directive('myCurrentTime', ['$interval', 'dateFilter', 
+	function($interval, dateFilter) {
+	/* function link(scope,element,attr) is called by angular for DOM linking 
+	where scope is angular scope, element is DOM (jqLite) element , 
+	and attrs is a map of attributes */
+	function link(scope, element, attrs) {
+	var format,timeoutId; //local var declarations
+
+	/* utility sub function wich update DOM element with current time */
+	function updateTime() {
+		element.text(dateFilter(new Date(), format));
+	}
+	/* surveiller si l'attribut "myCurrentTime / my-current-time" change
+	et appeler apdateTime() dans ce cas */
+	scope.$watch(attrs.myCurrentTime, function(value) {
+		format = value;
+		updateTime();
+	});
+					
+	/* for prevent memory leak */
+	element.on('$destroy', function() {
+		$interval.cancel(timeoutId);
+	});
+
+	// start the UI update process; save the timeoutId for canceling
+	timeoutId = $interval(function() {
+		updateTime(); // update DOM
+		}, 1000 /* every 1000ms */);
+	} //end of link function
+
+	//return association to the "link" function to be used by angular
+	return {
+	    restrict: 'A',
+		link: link
+		};
+	}]);//end of directive customisation
+</script>
+</head>
+<body>
+	<div ng-controller="Controller">
+		Date format: <input ng-model="format"> <hr/>
+		Current time is: <span my-current-time="format"></span>
+	</div>
+</body>
+</html>

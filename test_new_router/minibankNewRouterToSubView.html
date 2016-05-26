@@ -1,0 +1,31 @@
+        <html >
+        <head>
+        <script src="lib/angular/angular.js"></script>
+        <script src="lib/angular/angular-route.js"></script>
+        <script src="js/minibankApp_with_new_router.js"></script>
+		<script src="./components/welcome/welcome.js"></script>
+		<script src="./components/identification/identification.js"></script>
+		<script src="./components/identifie/identifie.js"></script>
+		<script src="lib/angular/dist/router.es5.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<link rel="stylesheet" type="text/css" href="css/layout.css"/>
+        </head>
+        <body ng-app="minibankApp" ng-controller="AppController as app">
+		 <!-- header , aside , section, footer since html5 , div with html4 -->
+			<header id="mainHeader" role="banner">
+		       <h3>Minibank App </h3>
+			</header>
+			<div id="mainArea"  >
+				<section id="simpleMainContent" ng-viewport>  		
+				</section> <!-- ="bodyViewPort" -->
+			</div>
+			<!--
+		   <footer id="mainFooter" ng-viewport="footerViewPort">
+			</footer>
+			-->
+			 <footer id="mainFooter" >
+			... status , mentions legales , ... <a href="#/welcomeMiniBank"> retour accueil </a>
+			</footer>
+     
+        </body>
+        </html>

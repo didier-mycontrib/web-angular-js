@@ -1,0 +1,41 @@
+        <html ng-app="myApp">
+        <head>
+        <script src="lib/angular/angular.js"></script>
+		<script>
+	   var myAjsApp = angular.module('myApp', []);
+	   myAjsApp.controller('scopeExampleController', ['$scope', function($scope) {
+			$scope.person1 = { name:"nom1" , address : "adr1"};
+			$scope.person2 = { name:"nom2" , address : "adr2"};
+		}]);
+		myAjsApp.directive('myCustomer', function() {
+			return {
+				restrict: 'E',/* A: as Attribute , C:as css Class , E:as Element */
+				scope: {
+					customerInfo: '=info' /* in this "scope of directive" customerInfo 
+					                       have the value of attr 'info' of directive call */
+				},
+				template: ' <p>*Name: {{customerInfo.name}} Address: {{customerInfo.address}}</p>'
+			};
+		});
+		myAjsApp.directive('myCustomer2', function() {
+			return {
+				restrict: 'E',/* A: as Attribute , C:as css Class , E:as Element */
+				scope: {
+					customerInfo: '=' /* same name in directive scope and in calling scope */
+				},
+				template: ' <p>**Name: {{customerInfo.name}} Address: {{customerInfo.address}}</p>'
+			};
+		});
+		
+		</script>
+        </head>
+        <body  ng-controller="scopeExampleController">
+		***<br/>
+	    <my-customer info="person1"></my-customer>
+		<my-customer info="person2"></my-customer>
+		**<br/>
+		 <my-customer2 customer-info="person1"></my-customer2>
+		 <my-customer2 customer-info="person2"></my-customer2>
+		**
+		</body>
+        </html>

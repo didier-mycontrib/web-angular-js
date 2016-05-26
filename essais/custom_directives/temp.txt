@@ -1,0 +1,31 @@
+<html ng-app="myApp" >
+        <head>
+        <script src="lib/angular/angular.js"></script>
+	<script>
+	   var myApp = angular.module('myApp', []);
+	   myApp.directive('ngMydirective', function() 
+	   { return 
+	       { restrict: 'A',
+		   template: '<div>ng-MyDirective defaultText</div>' 
+		   } 
+		});
+	</script>
+        </head>
+        <body>
+		
+		template: '<input type="button" onclick="{{onMsgFct}}"  value="{{myLabel}} "  />'
+
+
+		
+		 var myAjsApp = angular.module('myApp', []);
+        myAjsApp.controller('BasicCtrl', ['$scope', function($scope) {
+  $scope.customer = {
+    name: 'didier',
+    address: '1 rue elle par ici'
+  };
+}]);
+myAjsApp.directive('myDirective', function() {
+  return {
+    template: 'CustomerName: {{customer.name}} Address: {{customer.address}}'
+  };
+});

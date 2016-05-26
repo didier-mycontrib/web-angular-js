@@ -1,0 +1,36 @@
+        <html ng-app="myApp">
+        <head>
+        <script src="lib/angular/angular.js"></script>
+		<script>
+	   var myAjsApp = angular.module('myApp', []);
+	   myAjsApp.controller('p1Controller', ['$scope', function($scope) {
+			$scope.person = { name:"nom1" , address : "adr1"};
+		}]);
+		myAjsApp.controller('p2Controller', ['$scope', function($scope) {
+			$scope.person = { name:"nom2" , address : "adr2"};
+		}]);
+		myAjsApp.directive('myBadCustomerDirective', function() {
+			return {
+				restrict: 'E',/* A: as Attribute , C:as css Class , E:as Element */
+				/* if non scope : not isolated Scoped for directive and same scope as calling/parent */
+				/* scope: {
+				}, */
+				template: ' <p>Name: {{person.name}} Address: {{person.address}}</p>'
+			};
+		});
+		
+		
+		</script>
+        </head>
+        <body>
+		***<br/>
+		<div ng-controller="p1Controller">
+	    <my-bad-customer-directive />
+		</div>
+		**<br/>
+		<div ng-controller="p2Controller">
+	    <my-bad-customer-directive />
+		</div>
+		*
+		</body>
+        </html>
