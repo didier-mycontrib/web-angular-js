@@ -1,0 +1,57 @@
+        <html ng-app="myApp"  ng-init="myFontStyle='italic'">
+        <head>
+        <script src="lib/angular/angular.js"></script>
+        <script src="js/testEventCtrls.js"></script>
+		<!-- <link rel="stylesheet" type="text/css" href="css/layout.css"/> -->
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<style type="text/css">
+		/* comment in css, rappels des principaux selecteurs:
+			balise { ... }
+			#id { ...}
+			.classXY { ....}
+		*/
+		    #divTexte {  background-color:#FF9900; 	margin-bottom:5px; padding:3px;}
+		    #divCalcul { background-color:rgb(120,250,120); margin:3px; padding:3px; border-color:rgb(0,0,0); border-width:2px; border-style:solid;}
+		
+			#divDetails { background-color:rgb(200,200,200);  font-style:italic; font-weight:bold;}	
+			#divDessin { background-color:rgb(120,120,250); margin:3px; padding:3px; font-weight:bold;}				
+			canvas { background-color:rgb(255,255,255);}
+			.blueClass {color:blue;}			
+		</style>
+        </head>
+        <body ng-controller="MainCtrl" 	bgColor="{{my_background_color}}">
+		<h1> {{title}} </h1>
+		
+		<input type='checkbox' ng-model="with_details">avec details </input> <br/>
+        <div id="divDetails" ng-show="with_details">
+		<span style="font-style : {{myFontStyle}}">my background color : </span> <input type='color' ng-model="my_background_color" /> <br/> 
+		***
+		</div>
+		
+		<div id="divCalcul">
+			<b>CALCUL</b> <br/>
+			a: <input type='text' ng-model="a" /> <br/>
+			b: <input type='text' ng-model="b" /> <br/>
+			operation: <input type='button' value="a+b" ng-click="addition()" /> 
+			<input type='button' value="a/b" ng-click="division()" ng-disabled="b==0 || b=='' || b==undefined" />		<br/>
+			res: <b>{{res}}</b>
+		</div>
+		
+		<div id="divTexte">
+			texte : <input type='text' ng-model="my_text" ng-change="inverser_texte()" /> <br/>
+			texte inverse (apres declenchement evenement): <b>{{my_text_inverse}} </b> <br/>
+		</div>
+		
+		<table border="1">
+		<tr ng-repeat="p in pays.liste"> <td  ng-click="pays.doClick(p, $event)"> <span class="blueClass"> {{p.nom}} <span></td> <td> {{p.capitale}}</td> </tr>
+		</table>
+		<hr/>
+		
+		<div id="divDessin">
+			 <canvas id="myCanvas" width="250" height="150" style="border:1px solid #000000;"
+			 ng-click="log_coords($event)">
+			</canvas>  <input type='button' value="clear" ng-click="clear_canvas()" />
+			<hr/>{{my_status_msg}}
+		</div>
+        </body>
+        </html>

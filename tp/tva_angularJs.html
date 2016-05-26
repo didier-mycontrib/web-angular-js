@@ -1,0 +1,40 @@
+        <html ng-app="tvaApp">
+        <head>
+        <script src="lib/angular/angular.js" ></script>
+        <script src="js/tvaCtrls.js"  ></script>
+		<!-- <link rel="stylesheet" type="text/css" href="css/layout.css"/> -->
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<style type="text/css">
+		/* comment in css, rappels des principaux selecteurs:
+			balise { ... }
+			#id { ...}
+			.classXY { ....}
+		*/
+		    #divTva {  background-color:#FF9900; font-weight:bold; font-size:14pt; font-family:courier;
+						margin-bottom:5px; padding:3px;}
+			h1 { color:rgb(192,0,0);  }
+			h3 { color:rgb(0,0,192);  }		
+		</style>
+        </head>
+        <body ng-controller="MainCtrl">
+		<h1> {{title}} ( {{brandName}})</h1>
+		
+        <div id="divTva"  ng-controller="TvaCtrl">
+			<h3> {{title}} ( {{brandName}}) </h3> 
+			ht : <input ng-model="ht" /> <br/>
+			taux : <!-- <input ng-model="taux" /> -->
+			<select ng-model="taux">
+			   <option ng-repeat="t in listeTaux" value="{{t.valeur}}"> {{t.nom}} </option>
+			</select> ({{taux}} % )<br/>
+			<hr/>
+			tva: {{ht* taux/100}} <br/>
+			ttc (via basic expression): {{ht* (1 + taux/100)}} <br/>
+			ttc (via function call in expression): {{calcul_ttc()}} <br/>
+			<hr/>
+			newBrandName : <input ng-model="newBrandName"/> <br/>
+			<input type='button' ng-click="updateBrandName()" value="update BrandName" /> <br/>
+			<input type='button' ng-click="updateBrandNameInParentScope()" value="update BrandName in parent scope" /> <br/>
+        </div>
+	
+        </body>
+        </html>
