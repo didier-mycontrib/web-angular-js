@@ -1,0 +1,54 @@
+        <html ng-app="myApp">
+        <head>
+		<style type="text/css" >
+		my-card-pres {
+			display: block;
+			border: 1px solid #555;
+			padding: 5px;
+			max-width: 400px;
+			min-height: 200px;
+		}
+		  my-card-pres .pic {
+					float: right;
+					max-width: 100px;
+			}
+		</style>
+        <script src="lib/angular/angular.js"></script>
+		<script>
+	   var myAjsApp = angular.module('myApp', []);
+	   myAjsApp.controller('scopeExampleController', ['$scope', function($scope) {
+			$scope.bigTitle = 'Big Title';
+			$scope.favoriteImage='images/android.png';
+		}]);
+		
+		myAjsApp.directive('myCardPres', function() {
+			return {
+				restrict: 'E',/* A: as Attribute , C:as css Class , E:as Element */
+				scope: {
+					title: '=myTitle',
+					pic: '=myPic',
+					content: '@myContent'
+				},
+				template: ' <div> <img  class="pic" ng-src="{{pic}}" /> <h3> {{title}} </h3>  {{content}}</div>'
+			};
+		});
+		
+		
+		</script>
+        </head>
+        <body  ng-controller="scopeExampleController">
+		***<br/>
+	    <my-card-pres my-title="'titre1'" 
+		               my-pic="'images/ilfracombe.jpg'" 
+					   my-content="blabla blabla texte blabla texte blabla blabla blabla texte blabla texte blabla blabla blabla texte blabla texte blabla" >
+		</my-card-pres> <br/>
+		
+		<!--
+		***<br/>
+		 <my-card-pres my-title="bigTitle" 
+		               my-pic="favoriteImage"
+					    my-content="blabla blabla texte blabla texte blabla blabla blabla texte blabla texte blabla blabla blabla texte blabla texte blabla" >
+		</my-card-pres> <br/>
+		-->
+		</body>
+        </html>

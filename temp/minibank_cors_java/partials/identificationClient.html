@@ -1,0 +1,9 @@
+        <div ng-controller="IndentificationCtrl">
+        <h3> {{title}} </h3> 
+		   numClient:<input type="text" ng-model="numClient"/> <br/>
+		   password:<input type="text" ng-model="password"/> <br/>
+		   <button ng-click="verifPassword()">verifPassword</button><br/>
+           <a href="#/clientIdentifie/{{numClient}}" 
+		      ng-show="resVerify"> vers espace client identifie </a>
+        </div>
+        

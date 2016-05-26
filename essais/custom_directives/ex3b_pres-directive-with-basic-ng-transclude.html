@@ -1,0 +1,55 @@
+        <html ng-app="myApp">
+        <head>
+		<style type="text/css" >
+		my-card-pres {
+			display: block;
+			border: 1px solid #555;
+			padding: 5px;
+			max-width: 400px;
+			min-height: 200px;
+		}
+		  my-card-pres .pic {
+					float: right;
+					max-width: 100px;
+			}
+		</style>
+        <script src="lib/angular/angular.js"></script>
+		<script>
+	   var myAjsApp = angular.module('myApp', []);
+	   myAjsApp.controller('scopeExampleController', ['$scope', function($scope) {
+			$scope.bigTitle = 'Big Title';
+			$scope.favoriteImage='images/android.png';
+		}]);
+		
+		myAjsApp.directive('myCardPres', function() {
+			return {
+				restrict: 'E',/* A: as Attribute , C:as css Class , E:as Element */
+				scope: {
+					title: '=myTitle',
+					pic: '=myPic',
+				},
+				template: '<div> <img  class="pic" ng-src="{{pic}}" /> <h3> {{title}} </h3> <div ng-transclude> </div>' ,
+				transclude: true
+			};
+		});
+		
+		
+		</script>
+        </head>
+        <body  ng-controller="scopeExampleController">
+		***<br/>
+	    <my-card-pres my-title="bigTitle" 
+		               my-pic="'images/ilfracombe.jpg'" >
+			<p>blabla blabla texte blabla texte partie 1 </p>
+			<p>blabla blabla blabla texte blabla texte partie2</p>
+			<p>blabla blabla blabla texte blabla texte partie3 </p>
+		</my-card-pres> <br/>
+		
+		
+		<!--
+		   <div ng-transclude> placé dans le template de la directive sera automatiquement 
+		   remplacé par les sous éléments HTML (ici <p>...</p><p>...</p><p>...</p>)
+		   de la balise correspondant à l'invocation de la directive (ici   <my-card-pres>...</my-card-pres>)
+		-->
+		</body>
+        </html>
